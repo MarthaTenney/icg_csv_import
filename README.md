@@ -97,16 +97,12 @@ All of the remaining columns in our example contain XPath statements in row one.
 
 The XPath 1.0 specification includes many useful tools, but the CSV Import module is restricted to using very simple XPath statements as outlined in the following rules.
 
-* **One Attribute per Element** - Attributes, like type='local' in the identifier column of our example, are limited to not more than one per element.  Under this rule the following XPaths are valid because each element has only zero or one attributes:
+* **Multiple static attributes using 'and' syntax** - Attributes, like type='local' in the identifier column of our example, may be concatenated using [@first='one' and @second='two' and @third='three'] syntax.  Under this rule the following XPaths are valid:
 
 	* /mods/titleInfo/title
 	* /mods/name/namePart[@type='given']
-	* /mods/name[@type='personal']/namePart[@type='given']     
-	
-	The following XPath statements are invalid because they contain elements with more than one attribute:
-
-	* /mods/name[@type='personal'][@displayLabel='given']     
-	* /mods/name/namePart[@type='personal'][@displayLabel='given'] 
+	* /mods/name[@type='personal']/namePart[@type='given']
+        * /mods/name[@type='personal' and @displayLabel='given']
 
 * **Elements can have Predicates, or Indicies** - Some data constructs require the use of element predicates or indicies.  Consider this common MODS construct:
 
@@ -362,7 +358,6 @@ If you would like to contribute to this module, please check out [CONTRIBUTING.m
 ## License
 
 [GPLv3](http://www.gnu.org/licenses/gpl-3.0.txt)
-
 
 
 
